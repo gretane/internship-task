@@ -1,7 +1,9 @@
-## About task
+### About task
 
 #### Name: 'School Projects'
 It is an 'application for a teacher to assign students to groups for a project.'
+
+
 
 ### Navigating through the 'app'
 
