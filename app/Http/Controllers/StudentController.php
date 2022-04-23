@@ -21,7 +21,7 @@ class StudentController extends Controller
     
         if ($request->search && 'all' == $request->search) {
 
-            $students = Student::where('student_name', 'like', '%' . $request->srch . '%')
+            $students = Student::where('full_name', 'like', '%' . $request->srch . '%')
             ->paginate(self::RESULTS_PER_PAGE)->withQueryString();
     
         } else {

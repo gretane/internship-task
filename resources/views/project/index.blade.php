@@ -3,26 +3,26 @@
    <section>
         <h4>Įrenginiai</h4>
         <article>
-            <form action="{{route('product.index')}}" method="GET">
+            <form action="{{route('project.index')}}" method="GET">
                 <fieldset>
-                <legend><h5>Paieška:</h5></legend>
+                <legend><h5>Search:</h5></legend>
                 @csrf
-                    <input type="text" name="srch" placeholder="Ieškoti įrenginio" value="{{$srch}}">
-                    <button type="submit" name="search" class="btn btn-outline-dark" value="all">Ieškoti</button>
+                    <input type="text" name="srch" placeholder="Search projects" value="{{$srch}}">
+                    <button type="submit" name="search" class="btn btn-outline-dark" value="all">Search</button>
                 </fieldset>
             </form>
-            <a href="{{route('product.index')}}" class="btn btn-outline-dark">Anuliuoti</a>
+            <a href="{{route('project.index')}}" class="btn btn-outline-dark">Reset</a>
         </article>
         <article>    
             <table style="border-collapse: collapse; border: 2px solid; width: 40%;">
-                @foreach($products as $product) 
+                @foreach($projects as $project) 
                     <tr style="border: 1px solid;">
-                        <td> <a href="{{route('product.show', ['product' => $product->id])}}" style="color: black; text-decoration: none;"> 
-                            <b> {{$product->product_name}}</b> <i> Apie...</i> </a></td>  
+                        <td> <a href="{{route('project.show', ['project' => $project->id])}}" style="color: black; text-decoration: none;"> 
+                            <b> {{$project->title}}</b> <i> About...</i> </a></td>  
                     </tr>
                 @endforeach
             </table>
-            <div> {{$products->links()}} </div>
+            <div> {{$projects->links()}} </div>
         </article>
     </section>                 
 @endsection
