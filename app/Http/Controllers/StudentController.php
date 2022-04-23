@@ -68,7 +68,9 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
+        return view('student.show', [
+            'student' => $student
+    ]);
     }
 
     /**
@@ -79,7 +81,7 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        return view('student.edit', ['student' => $student]);
     }
 
     /**
@@ -91,7 +93,9 @@ class StudentController extends Controller
      */
     public function update(UpdateStudentRequest $request, Student $student)
     {
-        //
+        $student->full_name = $request->student_name;
+        $student->save();
+        return redirect()->route('student.index')->with('success_message', 'Successfully updated.');
     }
 
     /**
@@ -102,6 +106,7 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        $student->delete();
+        return redirect()->route('student.index')->with('success_message', 'Deletion succeeded.');
     }
 }

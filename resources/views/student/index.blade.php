@@ -17,8 +17,10 @@
             <table style="border-collapse: collapse; border: 2px solid; width: 40%;">
                 @foreach($students as $student) 
                     <tr style="border: 1px solid;">
-                        <td> <a href="{{route('student.show', ['student' => $student->id])}}" style="color: black; text-decoration: none;"> 
-                            <b> {{$student->full_name}}</b> <i> About...</i> </a></td>  
+                        <td> 
+                            <a href="{{route('student.show', ['student' => $student->id])}}" style="color: black; text-decoration: none;"> 
+                            <b> {{$student->full_name}}</b> <i> About...</i> </a>
+                        </td> 
                     </tr>
                 @endforeach
             </table>
