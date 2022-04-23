@@ -56,14 +56,14 @@
                                 Students
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{route('student.index')}}">
                                     Students List
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{route('student.create')}}">
                                     New Student
                                 </a>
                             </div>
-                        </li> --}}
+                        </li>
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))

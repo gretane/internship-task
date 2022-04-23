@@ -5,17 +5,35 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use App\Http\Requests\IndexStudentRequest;
 
 class StudentController extends Controller
 {
+    const RESULTS_PER_PAGE = 15;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(IndexStudentRequest $request)
     {
-        //
+        // search
+    
+        if ($request->search && 'all' == $request->search) {
+
+            $students = Student::where('student_name', 'like', '%' . $request->srch . '%')
+            ->paginate(self::RESULTS_PER_PAGE)->withQueryString();
+    
+        } else {
+    
+            $students = Student::paginate(self::RESULTS_PER_PAGE)->withQueryString();
+        }
+    
+        return view('student.index', [
+            'students' => $students,
+            'srch' => $request->srch ?? ''
+        ]);
+    
     }
 
     /**
@@ -25,7 +43,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('student.create');
     }
 
     /**
@@ -36,7 +54,10 @@ class StudentController extends Controller
      */
     public function store(StoreStudentRequest $request)
     {
-        //
+        $student = new Student;
+        $student->full_name = $request->student_name;
+        $student->save();
+        return redirect()->route('student.index')->with('success_message', 'New student successfully added.');
     }
 
     /**
