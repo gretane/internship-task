@@ -25,8 +25,10 @@
                                         @for($j = 1; $j < $project->max_students + 1; $j++)
                                             <tr>
                                                 <td> <select name="student_id">
+                                                        <option value="0" disabled selected> Assign student </option>
+                                                        <option disabled>-----</option>
                                                     @foreach ($students as $student)
-                                                        <option value="{{$student->id}}" @if(old('student_id', $project->student_id) == $project->student_id) selected @endif>
+                                                        <option value="{{$student->id}}" > {{--@if(old('student_id', $project->student_id) == $project->student_id) selected @endif--}}
                                                             {{$student->full_name}}
                                                         </option>
                                                     @endforeach
@@ -37,7 +39,7 @@
                                     </table>
                                 @endfor
                           
-                            <button type="submit">Edit</button>
+                            <button type="submit" class="btn btn-outline-dark">Edit</button>
                         </form>
                     </div>
                 </div>

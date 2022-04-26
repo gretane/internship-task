@@ -104,8 +104,8 @@ class ProjectController extends Controller
         $project->total_groups = $request->groups_number;
         $project->max_students = $request->students_number;
 
-        $student = Student::where('student_id', $request->sudent_id);
-        $project->student()->attach($student);
+        $student = Student::where('id', $request->student_id)->get();
+        $project->hasStudents()->attach($student);
 
         $project->save();
         return redirect()->route('project.index')->with('success_message', 'Successfully updated.');
