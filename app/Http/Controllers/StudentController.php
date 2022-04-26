@@ -22,11 +22,11 @@ class StudentController extends Controller
         if ($request->search && 'all' == $request->search) {
 
             $students = Student::where('full_name', 'like', '%' . $request->srch . '%')
-            ->paginate(self::RESULTS_PER_PAGE)->withQueryString();
+            ->orderBy('full_name')->paginate(self::RESULTS_PER_PAGE)->withQueryString();
     
         } else {
     
-            $students = Student::paginate(self::RESULTS_PER_PAGE)->withQueryString();
+            $students = Student::orderBy('full_name')->paginate(self::RESULTS_PER_PAGE)->withQueryString();
         }
     
         return view('student.index', [
