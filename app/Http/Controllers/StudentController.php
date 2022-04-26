@@ -95,7 +95,7 @@ class StudentController extends Controller
     {
         $student->full_name = $request->student_name;
         $student->save();
-        return redirect()->route('student.index')->with('success_message', 'Successfully updated.');
+        return redirect()->route('student.show', $student)->with('success_message', 'Successfully updated.');
     }
 
     /**

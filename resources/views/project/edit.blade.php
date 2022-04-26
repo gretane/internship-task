@@ -22,10 +22,10 @@
                                                 <th> Group #{{$i}}</th>
                                             </tr>
                                         </thead>
-                                        @for($j = 1; $j < $project->total_groups + 1; $j++)
+                                        @for($j = 1; $j < $project->max_students + 1; $j++)
                                             <tr>
                                                 <td> <select name="student_id">
-                                                    @foreach ($project->hasStudents as $student)
+                                                    @foreach ($students as $student)
                                                         <option value="{{$student->id}}" @if(old('student_id', $project->student_id) == $project->student_id) selected @endif>
                                                             {{$student->full_name}}
                                                         </option>

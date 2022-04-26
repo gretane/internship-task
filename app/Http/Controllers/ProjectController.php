@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Requests\IndexProjectRequest;
+use App\Models\Student;
 
 class ProjectController extends Controller
 {
@@ -83,7 +84,11 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('project.edit', ['project' => $project]);
+        $students = Student::orderBy('full_name')->get();
+        return view('project.edit', [
+            'project' => $project,
+            'students' => $students
+        ]);
     }
 
     /**
@@ -98,6 +103,10 @@ class ProjectController extends Controller
         $project->title = $request->project_title;
         $project->total_groups = $request->groups_number;
         $project->max_students = $request->students_number;
+
+        $student = Student::where('student_id', $request->sudent_id);
+        $project->student()->attach($student);
+
         $project->save();
         return redirect()->route('project.index')->with('success_message', 'Successfully updated.');
     }

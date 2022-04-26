@@ -16,14 +16,18 @@
                                         <th> Group number </th> 
                                     </tr>
                                 </thead>
-                                
-                                @foreach($student->studentProjects as $project)
-                                    <tr>
-                                        <td> {{$project->title}} </td>
-                                        <td> #number </td>
-                                    </tr>
-                                @endforeach
-                                
+                                @if($student->studentProjects)
+                                    @foreach($student->studentProjects as $project)
+                                        <tr>
+                                            <td> {{$project->title}} </td>
+                                            <td> #number </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                <tr>
+                                    <td> Not assigned to any project. </td>
+                                </tr>
+                                @endif
                             </table>
                         </article>
                         <a href="{{route('student.edit', [$student])}}" class="btn btn-outline-dark"> Edit </a>

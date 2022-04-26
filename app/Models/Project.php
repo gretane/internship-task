@@ -9,11 +9,7 @@ class Project extends Model
 {
     use HasFactory;
     
-    public function hasGroups() {
-        return $this->hasMany(Group::class);
-    }
-
     public function hasStudents() {
-        return $this->belongsToMany(Student::class, Group::class);
+        return $this->belongsToMany(Student::class);
     }
 }
