@@ -10,27 +10,20 @@
                     <div class="card-body">
                         <article>
                             {{-- foreach with group tables --}}
-                            <table>
-                                <tr>
-                                    <th> #Group1 </th>
-                                </tr>
-                                <tr> 
-                                    <td> Student1 </td>
-                                    <td> Student2 </td>
-                                    <td> ... </td>
-                                </tr>
-                            </table>
-
-                            <table>
-                                <tr>
-                                    <th> #Group2 </th>
-                                </tr>
-                                <tr> 
-                                    <td> Student1 </td>
-                                    <td> Student2 </td>
-                                    <td> ... </td>
-                                </tr>
-                            </table>
+                            @for($i=1; $i < $project->total_groups+1; $i++)
+                                <table> 
+                                    <thead>
+                                        <tr>
+                                            <th> Group #{{$i}}</th>
+                                        </tr>
+                                    </thead>
+                                    @for($j=1; $j < $project->max_students+1; $j++)
+                                        <tr>
+                                            <td> Student {{$j}}</td>
+                                        </tr>
+                                    @endfor
+                                </table>
+                            @endfor
                         </article>
                         <a href="{{route('project.edit',[$project])}}" class="btn btn-outline-dark"> Edit </a>
                         <form method="POST" action="{{route('project.destroy', $project)}}">
