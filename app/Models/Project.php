@@ -14,6 +14,6 @@ class Project extends Model
     }
 
     public function hasStudents() {
-        return $this->hasManyThrough(Student::class, Group::class);
+        return $this->belongsToMany(Student::class, Group::class);
     }
 }

@@ -11,7 +11,7 @@ class Student extends Model
     //belongs through?
     public function studentProjects() {
 
-        return $this->belongsToMany(Project::class);
+        return $this->hasMany(Project::class);
     }
 
     public function studentGroups() {
