@@ -10,14 +10,20 @@
                     <div class="card-body">
                         <article>
                             <table>
-                                <tr>
-                                    <th> Assigned projects </th>
-                                    <th> Group number </th>
-                                </tr>
-                                <tr> 
-                                    <td> Assigned project title</td>
-                                    <td> #Group number </td>
-                                </tr>
+                                <thead>
+                                    <tr>
+                                        <th> Assigned project </th>
+                                        <th> Group number </th> 
+                                    </tr>
+                                </thead>
+                                
+                                @foreach($student->studentProjects as $project)
+                                    <tr>
+                                        <td> {{$project->title}} </td>
+                                        <td> #number </td>
+                                    </tr>
+                                @endforeach
+                                
                             </table>
                         </article>
                         <a href="{{route('student.edit', [$student])}}" class="btn btn-outline-dark"> Edit </a>

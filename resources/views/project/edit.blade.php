@@ -14,7 +14,29 @@
                             <input type="text" name="groups_number" id="groups_number" value="{{old('groups_number', $project->total_groups)}}">
                             <label for="students_number">Maximum number of students per group: </label>
                             <input type="text" name="students_number" id="students_number" value="{{old('students_number', $project->max_students)}}">
-                            {{-- foreach groups tables and students --}}
+
+                                @for($i = 1; $i < $project->total_groups + 1; $i++)
+                                    <table> 
+                                        <thead>
+                                            <tr>
+                                                <th> Group #{{$i}}</th>
+                                            </tr>
+                                        </thead>
+                                        @for($j = 1; $j < $project->total_groups + 1; $j++)
+                                            <tr>
+                                                <td> <select name="student_id">
+                                                    @foreach ($project->hasStudents as $student)
+                                                        <option value="{{$student->id}}" @if(old('student_id', $project->student_id) == $project->student_id) selected @endif>
+                                                            {{$student->full_name}}
+                                                        </option>
+                                                    @endforeach
+                                                    </select> 
+                                                </td>
+                                            </tr>
+                                        @endfor
+                                    </table>
+                                @endfor
+                          
                             <button type="submit">Edit</button>
                         </form>
                     </div>

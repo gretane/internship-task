@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model
 {
     use HasFactory;
+    //belongs through?
+    public function studentProjects() {
+
+        return $this->belongsToMany(Project::class);
+    }
+
+    public function studentGroups() {
+
+        return $this->belongsToMany(Group::class);
+    }
+
+
 }

@@ -10,26 +10,26 @@
                     <div class="card-body">
                         <article>
                             {{-- foreach with group tables --}}
-                            @for($i=1; $i < $project->total_groups+1; $i++)
+                            @for($i = 1; $i < $project->total_groups + 1; $i++)
                                 <table> 
                                     <thead>
                                         <tr>
                                             <th> Group #{{$i}}</th>
                                         </tr>
                                     </thead>
-                                    @for($j=1; $j < $project->max_students+1; $j++)
+                                    @foreach($project->hasStudents as $student)
                                         <tr>
-                                            <td> Student {{$j}}</td>
+                                            <td> {{$student->full_name}} </td>
                                         </tr>
-                                    @endfor
+                                    @endforeach
                                 </table>
                             @endfor
                         </article>
                         <a href="{{route('project.edit',[$project])}}" class="btn btn-outline-dark"> Edit </a>
                         <form method="POST" action="{{route('project.destroy', $project)}}">
                             @csrf
-                            <button type="submit" class="btn btn-outline-dark">Delete</button>
-                            {{-- Cannot delete because (if) there are still projects --}}
+                            <button type="submit" class="btn btn-outline-dark"> Delete </button>
+                            {{-- Cannot delete because (if) there are still students assigned --}}
                         </form>
                     </div>
                 </div>
